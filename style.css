@@ -212,6 +212,11 @@ object-fit: contain;
     justify-content: center;
     gap: 16px;
 }
+.songlist{
+    height: 644px;
+    overflow: auto;
+    margin: 44px 0;
+}
 
 .songlist ul{
     padding: 0 12px;
@@ -219,4 +224,31 @@ object-fit: contain;
 
 .songlist ul li{
     list-style-type: decimal;
+    display: flex;
+    gap: 14px;
+    cursor: pointer;
+    padding: 12px 0;
+    border: 1px solid white;
+    margin: 12px o;
+    padding: 13px;
+    border-radius: 5px;
+    justify-content: space-between;
+}
+
+/*Play now */
+
+.songlist .info{
+    font-size: 13px;
+    width: 344px;
+}
+
+.playnow{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.playnow span{
+    font-size: 15px;
+    width: 100%;
+    padding: 12px;
 }

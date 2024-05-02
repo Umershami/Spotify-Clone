@@ -30,7 +30,17 @@ async function main() {
         console.log(songs);
         let songsul=document.querySelector(".songlist").getElementsByTagName("ul")[0]
         for(const song of songs){
-            songsul.innerHTML=songsul.innerHTML + `<li> ${song.replaceAll("%20", " ")} </li>`;
+            songsul.innerHTML=songsul.innerHTML + ` <li>
+            <img class="invert" src="music.svg" alt="">
+            <div class="info">
+                <div> ${song.replaceAll("%20", " ")} </div>
+                <div>Shami</div>
+            </div>
+            <div class="playnow">
+                <span>Play Now</span>
+                <img class="invert" src="play.svg" alt="">
+            </div>
+        </li>`;
         }
 
         if (songs.length > 0) {
