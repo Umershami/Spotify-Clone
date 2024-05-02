@@ -1,0 +1,36 @@
+.border{
+    border: 2px solid red;
+    margin: 3px;
+}
+
+.flex{
+    display: flex;
+}
+
+.justifycenter{
+    justify-content: center;
+}
+
+.items-center{
+    align-items: center;
+}
+
+
+
+/* For Chrome, Safari, and Opera */
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #333; /* Change this to your desired track color */
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #666; /* Change this to your desired scrollbar handle color */
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #888; /* Change this to your desired scrollbar handle color on hover */
+  }
+  
