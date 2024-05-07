@@ -1,5 +1,26 @@
 console.log("Let's start JS");
 
+// Predefine audio element
+let currentsong = new Audio();
+
+function secondsToMinutesSeconds(seconds) {
+    if (isNaN(seconds) || seconds < 0) {
+        return "00:00";
+    }
+
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = Math.floor(seconds % 60);
+
+    const formattedMinutes = String(minutes).padStart(2, '0');
+    const formattedSeconds = String(remainingSeconds).padStart(2, '0');
+
+    return `${formattedMinutes}:${formattedSeconds}`;
+}
+
+// Example usage:
+console.log(secondsToMinutesSeconds(65)); // Output: "01:05"
+console.log(secondsToMinutesSeconds(125)); // Output: "02:05"
+
 async function getsongs() {
     try {
         let a = await fetch("http://127.0.0.1:5500/songs/");
@@ -24,45 +45,69 @@ async function getsongs() {
     }
 }
 
+const playmusic = (track) => {
+    currentsong.pause(); // Pause the current song
+    currentsong = new Audio("/songs/" + track); // Create a new Audio element
+    currentsong.play(); 
+    play.src="pause.svg"
+
+    document.querySelector(".songinfo").innerHTML=track;
+    document.querySelector(".songtime").innerHTML="00:00/00:00"
+}
+
 async function main() {
     try {
         let songs = await getsongs();
-        console.log(songs);
-        let songsul=document.querySelector(".songlist").getElementsByTagName("ul")[0]
-        for(const song of songs){
-            songsul.innerHTML=songsul.innerHTML + ` <li>
-            <img class="invert" src="music.svg" alt="">
-            <div class="info">
-                <div> ${song.replaceAll("%20", " ")} </div>
-                <div>Shami</div>
-            </div>
-            <div class="playnow">
-                <span>Play Now</span>
-                <img class="invert" src="play.svg" alt="">
-            </div>
-        </li>`;
+        let songsul = document.querySelector(".songlist").getElementsByTagName("ul")[0];
+
+        for (const song of songs) {
+            let li = document.createElement("li");
+            li.innerHTML = `
+                <img class="invert" src="music.svg" alt="">
+                <div class="info">
+                    <div>${decodeURIComponent(song)}</div>
+                    <div>Shami</div>
+                </div>
+                <div class="playnow">
+                    <span>Play Now</span>
+                    <img class="invert" src="play.svg" alt="">
+                </div>`;
+            songsul.appendChild(li);
         }
 
-        if (songs.length > 0) {
-            // Set up a click event listener to play the audio when the user interacts with the document
-            document.addEventListener("click", function playAudio() {
-                var audio = new Audio(songs[0]);
-                audio.play();
+        // Event delegation
+        songsul.addEventListener("click", function(event) {
+            let target = event.target;
+            if (target.tagName === "SPAN" && target.textContent === "Play Now") {
+                let track = target.parentNode.previousElementSibling.firstElementChild.textContent.trim();
+                playmusic(track);
+            }
+        });
 
-                audio.addEventListener("loadeddata", () => {
-                    let duration = audio.duration;
-                    console.log(duration);
-                });
+        play.addEventListener("click", () => {
+            if (currentsong.paused) {
+                currentsong.play();
+                play.src="pause.svg"
+            } else {
+                currentsong.pause(); 
+                play.src="play.svg"
+            }
+        });
 
-                // Remove the event listener to prevent multiple audio plays on subsequent clicks
-                document.removeEventListener("click", playAudio);
-            });
-        } else {
-            console.log("No songs found.");
-        }
+        currentsong.addEventListener("canplay", () => {
+            console.log("Audio can play");
+            console.log("Duration:", currentsong.duration);
+        });
+
+        currentsong.addEventListener("timeupdate", () => {
+            console.log("Time Update:", currentsong.currentTime);
+            document.querySelector(".songtime").innerHTML = `${secondsToMinutesSeconds(currentsong.currentTime)} / ${secondsToMinutesSeconds(currentsong.duration)}`;
+        });
+
     } catch (error) {
         console.error("Error occurred:", error);
     }
 }
 
+// Function to play music
 main();

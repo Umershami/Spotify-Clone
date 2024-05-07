@@ -4,8 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        'Spotify - Web Player: Music for everyone'</title>
+    <title>'Spotify - Web Player: Music for everyone'</title>
     <link rel="stylesheet" href="utility.css">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -34,17 +33,7 @@
                 </div>
                 <div class="songlist">
                     <ul>
-                        <li>
-                            <img class="invert" src="music.svg" alt="">
-                            <div class="info">
-                                <div>Song name</div>
-                                <div>Song Artist</div>
-                            </div>
-                            <div class="playnow">
-                                <span>Play Now</span>
-                                <img class="invert" src="play.svg" alt="">
-                            </div>
-                        </li>
+
                     </ul>
                 </div>
                 <div class="footer">
@@ -113,15 +102,12 @@
                 <div class="cardcontainer">
                     <div class="card">
                         <div class="play">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"
-                                color="#000000" fill="black">
-                                <path
-                                    d="M15.9351 12.6258C15.6807 13.8374 14.327 14.7077 11.6198 16.4481C8.67528 18.3411 7.20303 19.2876 6.01052 18.9229C5.60662 18.7994 5.23463 18.5823 4.92227 18.2876C4 17.4178 4 15.6118 4 12C4 8.38816 4 6.58224 4.92227 5.71235C5.23463 5.41773 5.60662 5.20057 6.01052 5.07707C7.20304 4.71243 8.67528 5.6589 11.6198 7.55186C14.327 9.29233 15.6807 10.1626 15.9351 11.3742C16.0216 11.7865 16.0216 12.2135 15.9351 12.6258Z"
-                                    stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
-                                <path d="M20 5V19" stroke="currentColor" fill="#000" stroke-width="1.5"
-                                    stroke-linecap="round" />
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" color="#000000" fill="black">
+                                <path d="M15.9351 12.6258C15.6807 13.8374 14.327 14.7077 11.6198 16.4481C8.67528 18.3411 7.20303 19.2876 6.01052 18.9229C5.60662 18.7994 5.23463 18.5823 4.92227 18.2876C4 17.4178 4 15.6118 4 12C4 8.38816 4 6.58224 4.92227 5.71235C5.23463 5.41773 5.60662 5.20057 6.01052 5.07707C7.20304 4.71243 8.67528 5.6589 11.6198 7.55186C14.327 9.29233 15.6807 10.1626 15.9351 11.3742C16.0216 11.7865 16.0216 12.2135 15.9351 12.6258Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+                                <path d="M20 5V19" stroke="currentColor" fill="#000" stroke-width="1.5" stroke-linecap="round" />
                             </svg>
                         </div>
+                        
 
 
                         <img src="https://i.scdn.co/image/ab67706f00000002b55b6074da1d43715fc16d6d" alt="">
@@ -137,14 +123,24 @@
                 </div>
 
                 <div class="playbar">
+                    <div class="seekbar">
+                        <div class="circle">
+                            
+                        </div>
+                    </div>
+                    <div class="songtimeandname">
                     <div class="songinfo"></div>
                     <div class="songbuttons">
-                        <img src="prevsong.svg" alt="" class="prevbtn">
-                        <img src="play.svg" alt="" class="playbtn">
-                        <img src="nextsong.svg" alt="" class="nextbtn">
+                        <img class="previous" src="prevsong.svg" alt="" class="prevbtn">
+                        <img id="play" class="invert" src="play.svg" alt="">
+                        <img class="" src="nextsong.svg" alt="" class="nextbtn">
 
 
                     </div>
+                    <div class="songtime">
+
+                    </div>
+                </div> 
                 </div>
             </div>
         </div>
