@@ -45,19 +45,25 @@ async function getsongs() {
     }
 }
 
-const playmusic = (track) => {
+const playmusic = (track, pause = false) => {
+    currentsong.src = "/songs/" + track
+    if (!pause) {
+        currentsong.play()
+    }
     currentsong.pause(); // Pause the current song
     currentsong = new Audio("/songs/" + track); // Create a new Audio element
-    currentsong.play(); 
-    play.src="pause.svg"
+    currentsong.play();
+    play.src = "pause.svg"
 
-    document.querySelector(".songinfo").innerHTML=track;
-    document.querySelector(".songtime").innerHTML="00:00/00:00"
+    document.querySelector(".songinfo").innerHTML = decodeURI(track);
+    document.querySelector(".songtime").innerHTML = "00:00/00:00"
 }
 
 async function main() {
     try {
         let songs = await getsongs();
+
+        playmusic(songs[0], true)
         let songsul = document.querySelector(".songlist").getElementsByTagName("ul")[0];
 
         for (const song of songs) {
@@ -76,7 +82,7 @@ async function main() {
         }
 
         // Event delegation
-        songsul.addEventListener("click", function(event) {
+        songsul.addEventListener("click", function (event) {
             let target = event.target;
             if (target.tagName === "SPAN" && target.textContent === "Play Now") {
                 let track = target.parentNode.previousElementSibling.firstElementChild.textContent.trim();
@@ -87,10 +93,10 @@ async function main() {
         play.addEventListener("click", () => {
             if (currentsong.paused) {
                 currentsong.play();
-                play.src="pause.svg"
+                play.src = "pause.svg"
             } else {
-                currentsong.pause(); 
-                play.src="play.svg"
+                currentsong.pause();
+                play.src = "play.svg"
             }
         });
 
@@ -102,7 +108,21 @@ async function main() {
         currentsong.addEventListener("timeupdate", () => {
             console.log("Time Update:", currentsong.currentTime);
             document.querySelector(".songtime").innerHTML = `${secondsToMinutesSeconds(currentsong.currentTime)} / ${secondsToMinutesSeconds(currentsong.duration)}`;
+            document.querySelector(".circle").style.left = (currentsong.currentTime / currentsong.duration) * 100 + "%";
+
+
         });
+        // document.querySelector(".seekbar").addEventListener("input",function(event){
+        //     const seekbar=event.target.value;
+        //     const newpositon=(seekbar/100)+currentsong.duration;
+        //     currentsong.currentTime=newpositon;
+        // })
+
+        document.querySelector(".seekbar").addEventListener("click",e=>{
+            let percent = (e.offsetX/e.target.getBoundingClientRect().width)*100;
+            document.querySelector(".circle").style.left=percent+"%";
+            currentsong.currentTime=((currentsong.duration)*percent)/100
+        })
 
     } catch (error) {
         console.error("Error occurred:", error);

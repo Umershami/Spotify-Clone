@@ -266,6 +266,7 @@ object-fit: contain;
      bottom: 0px;
      border-radius: 10px;
      margin: 6px;
+     cursor: pointer;
 }
 
 .circle{
