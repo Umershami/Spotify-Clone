@@ -124,6 +124,19 @@ async function main() {
             currentsong.currentTime=((currentsong.duration)*percent)/100
         })
 
+        //Event listener for hamburger
+
+        document.querySelector(".hamburger").addEventListener("click", () => {
+            document.querySelector(".left").style.left = "0";
+        });
+        
+
+        //Close hamburger
+
+        document.querySelector(".close").addEventListener("click",()=>{
+            document.querySelector(".left").style.left ="-120%"
+        })
+
     } catch (error) {
         console.error("Error occurred:", error);
     }

@@ -3,11 +3,11 @@
 body {
     background-color: black;
     color: white;
+    margin: 0;
 }
 
 * {
-    margin: 0;
-    padding: 0;
+    box-sizing: border-box;
 }
 
 
@@ -16,12 +16,13 @@ body {
 }
 
 .left{
-    width: 27vw;
+    width: 25vw;
     padding: 21px;
+    z-index: 3;
 }
 
 .right{
-    width: 73vw;
+    width: 75vw;
 }
 
 .home ul li{
@@ -114,7 +115,10 @@ background-color: #292727;
 
 .cardcontainer{
     display: flex;
+    margin: 30px;
+    max-height: 70vh;
     gap: 10px;
+    overflow-y: auto;
     flex-wrap: wrap;
     margin: 30px;
 }
@@ -207,7 +211,7 @@ object-fit: contain;
     /* background-color: rgb(139 193 139); */
     width: 90%;
     padding: 12px;
-    height: 40px;
+    min-height: 40px;
     /* width: 70vw; */
 }
 
@@ -221,6 +225,17 @@ object-fit: contain;
     height: 644px;
     overflow: auto;
     margin-bottom: 44px ;
+}
+
+.hamburger{
+display: none;
+}
+
+.hamburgercont{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
 }
 
 .songlist ul{
@@ -259,8 +274,8 @@ object-fit: contain;
 }
 
 .seekbar{
-     height: 2px;
-     width: 100%;
+     height: 3px;
+     width: 98%;
      border: 2px solid rgb(7, 7, 7);
      position: absolute;
      bottom: 0px;
@@ -287,4 +302,44 @@ object-fit: contain;
 .songtimeandname{
     display: flex;
     justify-content: space-between;
+    margin: 20px 0;
+}
+
+@media (max-width: 1400px) {
+    .left {
+        position: absolute;
+        left: -120%;
+        transition: all .3s;
+        width: 100%;
+        background-color: black;
+    }
+
+    .left .close {
+        position: absolute;
+        right: 31px;
+        top: 25px;
+        width: 29px;
+    }
+
+    .right {
+        width: 100%;
+        margin: 0;
+    }
+
+    .playbar {
+        width: calc(100vw - 60px);
+        font-size: 8px; 
+    }
+
+    .seekbar {
+        width: calc(100vw - 70px); 
+    }
+
+    .hamburger {
+        display: block;
+    }
+    
+  
+    
+  
 }
